@@ -1,0 +1,79 @@
+<!--Barra de pesquisa-->
+<nav style="width: 600px; margin-left: auto; margin-right: auto;">
+    <div class="nav-wrapper blue-grey darken-4">    
+        <div class="input-field">
+          <input id="search" name= "search" type="search" #pesquisa (keyup.enter)="onEnter(pesquisa.value)" placeholder="Digite o nome de uma cidade..." required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+    </div>
+</nav>
+ 
+<!--Resultado da previsão do tempo-->
+<div class="result-weather" *ngIf="show">
+
+  <!--Loader-->
+    <div class="weather-loading" *ngIf='showloader'>
+      <div class="preloader-wrapper big active" style="display: block; margin-left: auto; margin-right: auto; top: 35%;">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--Fim loader-->
+
+    <div class="temp">O clima em {{this.previsaoTempo?.location.name}} hoje</div>
+    <div class="temp2"><div class="box-temp"><p style="margin-top: -6px;">{{this.previsaoTempo?.current.temperature}}°</p></div><img style="margin-left: 3px; float: left; width: 64px; height: 64px;" src="{{this.previsaoTempo?.current.weather_icons}}"></div>
+    <div class="temp" style="font-size: 12px; margin-top: 5px;">Sensação térmica</div>
+    <div class="temp" style="font-size: 12px; margin-top: 5px;">Horário local: {{this.previsaoTempo?.location.localtime}}</div>
+    <table style="width: 210px; float: left;">
+        <tbody>
+          <tr>
+            <td>Estado</td>
+            <td>{{this.previsaoTempo?.location.region}}</td>
+          </tr>
+          <tr>
+            <td>País</td>
+            <td>{{this.previsaoTempo?.location.country}}</td>
+          </tr>
+        </tbody>
+    </table>
+    <div class="box_info">
+    <table>
+        <tbody>
+          <tr>
+            <i class="material-icons" style="margin-top: 15px;">opacity</i>
+            <td>Umidade</td>
+            <td>{{this.previsaoTempo?.current.humidity}}%</td>
+          </tr>
+          <tr>
+            <i class="material-icons" style="margin-top: 15px;">visibility</i>
+            <td>Visibilidade</td>
+            <td>{{this.previsaoTempo?.current.visibility}}</td>
+          </tr>
+          <tr>
+            <i class="material-icons" style="margin-top: 15px;">flare</i>
+            <td>Índice UV</td>
+            <td>{{this.previsaoTempo?.current.uv_index}} de 10</td>
+          </tr>
+          <tr>
+            <i class="material-icons" style="margin-top: 15px;">unfold_less</i>
+            <td>Pressão</td>
+            <td>{{this.previsaoTempo?.current.pressure}} mb</td>
+          </tr>
+          <tr>
+            <i class="material-icons" style="margin-top: 15px;">assistant_photo</i>
+            <td>Vento</td>
+            <td>{{this.previsaoTempo?.current.wind_speed}} km/h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+
